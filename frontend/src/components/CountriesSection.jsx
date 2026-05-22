@@ -58,8 +58,13 @@ export const CountriesSection = () => {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="flex-shrink-0 group cursor-pointer"
               >
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-3 flex items-center gap-3 hover:bg-white/20 hover:border-accent-orange transition-all shadow-lg min-w-[180px]">
-                  <span className="text-4xl">{country.flag}</span>
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-3 flex items-center gap-3 hover:bg-white/20 hover:border-accent-orange transition-all shadow-lg min-w-[190px]">
+                  <img
+                    src={`https://flagcdn.com/w80/${country.code.toLowerCase()}.png`}
+                    alt={country.name}
+                    className="w-12 h-9 object-cover rounded-md shadow-lg ring-1 ring-white/30"
+                    loading="lazy"
+                  />
                   <div>
                     <div className="text-sm font-bold text-white">{country.name}</div>
                     <div className="text-[10px] text-white/60 uppercase tracking-wider">{country.code}</div>
@@ -81,8 +86,13 @@ export const CountriesSection = () => {
                 whileHover={{ scale: 1.1, y: -5 }}
                 className="flex-shrink-0 group cursor-pointer"
               >
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-3 flex items-center gap-3 hover:bg-white/20 hover:border-hava-red transition-all shadow-lg min-w-[180px]">
-                  <span className="text-4xl">{country.flag}</span>
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-3 flex items-center gap-3 hover:bg-white/20 hover:border-hava-red transition-all shadow-lg min-w-[190px]">
+                  <img
+                    src={`https://flagcdn.com/w80/${country.code.toLowerCase()}.png`}
+                    alt={country.name}
+                    className="w-12 h-9 object-cover rounded-md shadow-lg ring-1 ring-white/30"
+                    loading="lazy"
+                  />
                   <div>
                     <div className="text-sm font-bold text-white">{country.name}</div>
                     <div className="text-[10px] text-white/60 uppercase tracking-wider">{country.code}</div>

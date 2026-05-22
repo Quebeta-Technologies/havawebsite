@@ -30,10 +30,20 @@ export const Header = ({ onQuoteClick }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <div className="text-3xl font-bold">
-                <span className="text-hava-red" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>HAVA</span>
-              </div>
+            <Link to="/" className="flex items-center gap-3">
+              <img 
+                src={headerData.havaLogo} 
+                alt="HAVA" 
+                className="h-12 lg:h-14 w-auto object-contain"
+                data-testid="header-hava-logo"
+              />
+              <div className="hidden md:block h-10 w-px bg-steel-gray" />
+              <img 
+                src={headerData.haryrockLogo} 
+                alt="Haryrock Engineering" 
+                className="hidden md:block h-9 lg:h-10 w-auto object-contain"
+                data-testid="header-haryrock-logo"
+              />
             </Link>
 
             {/* Desktop Navigation */}

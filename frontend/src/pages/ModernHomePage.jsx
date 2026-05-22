@@ -172,23 +172,6 @@ export const ModernHomePage = () => {
                   data-testid="hero-image"
                 />
 
-                {/* Floating ISO badge on image - top right */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                  animate={heroInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.8, type: "spring" }}
-                  className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 w-24 h-24 lg:w-32 lg:h-32"
-                >
-                  <motion.img
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    src="/assets/iso-badge.png"
-                    alt="ISO 9001:2015 Certified"
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                    data-testid="hero-iso-badge"
-                  />
-                </motion.div>
-
                 {/* Floating tag - bottom left */}
                 <motion.div
                   animate={{ y: [0, -8, 0] }}

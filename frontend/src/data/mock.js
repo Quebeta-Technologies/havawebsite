@@ -14,10 +14,11 @@ export const headerData = {
     { name: "Services", path: "/services" },
     { name: "Distributors & Dealers", path: "/distributors" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" }
   ],
-  primaryCTA: "Get a Quote"
+  primaryCTA: "Get a Quote",
+  havaLogo: "/assets/hava-logo.png",
+  haryrockLogo: "/assets/haryrock-logo.png"
 };
 
 export const heroData = {
@@ -43,7 +44,7 @@ export const videoData = {
 };
 
 // Hero image for split section
-export const heroImage = "/assets/hava-hero.png";
+export const heroImage = "/assets/section-2-hero.png";
 
 // Countries served with flag emojis (Unicode flags work everywhere)
 export const countriesData = {
@@ -88,7 +89,7 @@ export const aboutData = {
     { value: "5+", label: "Core Industries" },
     { value: "Premium", label: "Quality Standards" }
   ],
-  image: "/products/about-manufacturing.jpg",
+  image: "/assets/section-3-about.png",
   cta: "Discover Our Story"
 };
 
@@ -146,7 +147,7 @@ export const productCategories = [
 export const whyHavaData = {
   heading: "Why Buyers Choose HAVA",
   intro: "When performance, durability, and dependable support matter, buyers choose manufacturers they can trust.",
-  image: "/products/about-manufacturing.jpg",
+  image: "/assets/why-hava.png",
   floatingTags: [
     { label: "ISO 9001:2015", position: "top-left" },
     { label: "Direct Manufacturer", position: "top-right" },
@@ -339,7 +340,6 @@ export const footerData = {
     { name: "Services", path: "/services" },
     { name: "Distributors & Dealers", path: "/distributors" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" }
   ],
   productCategories: [
