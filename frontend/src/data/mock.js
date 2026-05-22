@@ -310,16 +310,68 @@ export const testimonials = [
   {
     id: 1,
     name: "Praharsh Verma",
+    role: "Site Manager",
     product: "Rock Drill Dry",
-    text: "The rock drill has shown consistent performance throughout our mining operations. Easy to handle, highly efficient, and requires minimal maintenance. Excellent value for demanding field conditions.",
-    company: "Mining Operations, Rajasthan"
+    company: "Rajputana Mining Co.",
+    location: "Rajasthan, India",
+    text: "Consistent performance throughout our mining operations. Easy to handle, highly efficient, and minimal maintenance.",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Rajputana%20Mining&backgroundColor=c62828&textColor=ffffff"
   },
   {
     id: 2,
     name: "Yash Sharma",
-    product: "Chisel and Moil Points",
-    text: "Excellent performance from the chisel and moil points. Sharp penetration, long service life, and reliable quality. These tools have proven to be cost-effective and dependable for our quarrying operations.",
-    company: "Stone Quarry, Madhya Pradesh"
+    role: "Quarry Supervisor",
+    product: "Chisel & Moil Points",
+    company: "Sharma Stone Works",
+    location: "Madhya Pradesh, India",
+    text: "Sharp penetration, long service life, and reliable quality. Cost-effective and dependable for our quarrying operations.",
+    avatar: "https://i.pravatar.cc/150?img=33",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Sharma%20Stone&backgroundColor=1f3f77&textColor=ffffff"
+  },
+  {
+    id: 3,
+    name: "Ahmed Al-Mansoori",
+    role: "Operations Head",
+    product: "BBC-120F Drifter",
+    company: "Gulf Tunneling Corp.",
+    location: "Dubai, UAE",
+    text: "Outstanding power and reliability in continuous tunnelling operations. HAVA has become our preferred manufacturer.",
+    avatar: "https://i.pravatar.cc/150?img=51",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Gulf%20Tunneling&backgroundColor=f28c28&textColor=ffffff"
+  },
+  {
+    id: 4,
+    name: "Rajesh Patel",
+    role: "Plant Manager",
+    product: "HR-117 Pavement Breaker",
+    company: "Patel Infrastructure",
+    location: "Gujarat, India",
+    text: "Excellent build quality and superior impact energy. The breaker has significantly reduced our project timelines.",
+    avatar: "https://i.pravatar.cc/150?img=68",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Patel%20Infra&backgroundColor=304e6e&textColor=ffffff"
+  },
+  {
+    id: 5,
+    name: "Daniel Okafor",
+    role: "Director",
+    product: "Airline Accessories",
+    company: "Lagos Mining Ltd.",
+    location: "Lagos, Nigeria",
+    text: "Direct manufacturer support and quality has been exceptional. HAVA delivers on every commitment, every time.",
+    avatar: "https://i.pravatar.cc/150?img=60",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Lagos%20Mining&backgroundColor=059669&textColor=ffffff"
+  },
+  {
+    id: 6,
+    name: "Priya Nair",
+    role: "Procurement Lead",
+    product: "Button Bits & Drill Rods",
+    company: "Southern Quarries",
+    location: "Karnataka, India",
+    text: "Reliable supply chain, premium quality products, and competitive pricing. A true partnership in every sense.",
+    avatar: "https://i.pravatar.cc/150?img=45",
+    companyLogo: "https://api.dicebear.com/7.x/initials/svg?seed=Southern%20Quarries&backgroundColor=7c3aed&textColor=ffffff"
   }
 ];
 
@@ -357,11 +409,11 @@ export const footerData = {
     address: "Plot No. 123, Industrial Area, Pune - 411019, Maharashtra, India",
     customerCare: "+91-20-1234-5678",
     mobile: "+91-98765-43210",
-    email: "info@havaequipment.com",
+    email: "sales@havarock.in",
     hours: "Mon-Sat: 9:00 AM - 6:00 PM"
   },
-  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.2937!2d73.8567!3d18.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-  mapLink: "https://share.google/t368JvI25WLUzteG1",
+  mapEmbedUrl: "https://maps.google.com/maps?q=Haryrock+Engineering+Pvt+Ltd&output=embed",
+  mapLink: "https://share.google/zr2aq95YsJtVRhpVM",
   copyright: "© 2025 HAVA / Haryrock Engineering Pvt. Ltd. All Rights Reserved."
 };
 

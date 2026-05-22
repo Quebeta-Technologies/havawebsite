@@ -1,14 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ChevronLeft, ChevronRight, Download, ArrowRight, Phone, Sparkles, Award } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download, ArrowRight, Sparkles, Award } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { CardContent } from '../components/ui/card';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { QuoteModal } from '../components/QuoteModal';
 import { AnimatedBackground } from '../components/AnimatedBackground';
-import { GlassCard } from '../components/GlassCard';
 import { VideoSection } from '../components/VideoSection';
 import { TrustStrip } from '../components/TrustStrip';
 import { AboutSection } from '../components/AboutSection';
@@ -17,13 +16,13 @@ import { IndustriesSection } from '../components/IndustriesSection';
 import { StatsTabsSection } from '../components/StatsTabsSection';
 import { FeaturedProductsCarousel } from '../components/FeaturedProductsCarousel';
 import { CountriesSection } from '../components/CountriesSection';
+import { TestimonialsCarousel } from '../components/TestimonialsCarousel';
+import { ContactFormSection } from '../components/ContactFormSection';
 import { toast, Toaster } from 'sonner';
 import {
   heroData,
   heroImage,
   productCategories,
-  testimonials,
-  quoteCTAData
 } from '../data/mock';
 
 export const ModernHomePage = () => {
@@ -55,7 +54,10 @@ export const ModernHomePage = () => {
       {/* 1. VIDEO SECTION (first after header) */}
       <VideoSection />
 
-      {/* 2. HERO SECTION - 50/50 split: Text Left, Image Right */}
+      {/* 2. TRUST STRIP (between video and hero) */}
+      <TrustStrip />
+
+      {/* 3. HERO SECTION - 50/50 split: Text Left, Image Right */}
       <section ref={heroRef} className="relative py-8 lg:py-12 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <AnimatedBackground />
         <div className="absolute inset-0 grid-pattern opacity-20" />
@@ -194,9 +196,6 @@ export const ModernHomePage = () => {
         </div>
       </section>
 
-      {/* 3. Trust Strip */}
-      <TrustStrip />
-
       {/* 4. About Us */}
       <AboutSection onCtaClick={() => setQuoteModalOpen(true)} />
 
@@ -325,95 +324,11 @@ export const ModernHomePage = () => {
       {/* 10. Countries Served */}
       <CountriesSection />
 
-      {/* 11. Testimonials */}
-      <section className="py-12 lg:py-16 relative overflow-hidden bg-white">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-hava-red/5 rounded-full blur-3xl" />
+      {/* 11. Testimonials Carousel - 3 per slide */}
+      <TestimonialsCarousel />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-8"
-          >
-            <div className="inline-flex items-center gap-2 bg-accent-orange/10 text-accent-orange px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
-              <div className="w-2 h-2 bg-accent-orange rounded-full animate-pulse" />
-              Testimonials
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-charcoal mb-2">
-              What Our <span className="gradient-text">Customers Say</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <GlassCard key={testimonial.id} delay={index * 0.2}>
-                <CardContent className="p-8">
-                  <div className="text-6xl text-hava-red mb-4 leading-none font-serif">&ldquo;</div>
-                  <p className="text-gray-700 leading-relaxed italic mb-6">{testimonial.text}</p>
-                  <div className="pt-6 border-t border-steel-gray flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-hava-red to-accent-orange rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                      {testimonial.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-bold text-charcoal">{testimonial.name}</p>
-                      <p className="text-sm text-gray-600">{testimonial.company}</p>
-                      <p className="text-sm text-trust-blue font-medium mt-1">Using: {testimonial.product}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 12. Final CTA */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-hava-red via-hava-red/95 to-accent-orange" />
-        <AnimatedBackground />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-              {quoteCTAData.heading}
-            </h2>
-            <p className="text-lg mb-8 text-white/90">{quoteCTAData.body}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={() => setQuoteModalOpen(true)}
-                  className="bg-white text-hava-red hover:bg-slate-100 font-bold px-8 py-6 text-base shadow-2xl rounded-xl group"
-                  data-testid="final-cta-quote-btn"
-                >
-                  <span className="flex items-center gap-2">
-                    {quoteCTAData.primaryCTA}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={() => toast.info('Sales team contact coming soon!')}
-                  className="glass-dark border-2 border-white/50 text-white hover:bg-white hover:text-hava-red font-bold px-8 py-6 text-base rounded-xl shadow-2xl backdrop-blur-xl"
-                  data-testid="final-cta-sales-btn"
-                >
-                  <Phone className="mr-2 w-4 h-4" />
-                  {quoteCTAData.secondaryCTA}
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* 12. Contact Form (replaces final CTA) */}
+      <ContactFormSection />
 
       <Footer />
 

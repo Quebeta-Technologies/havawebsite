@@ -91,20 +91,23 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-8 border-b border-white/10">
           {/* Brand Summary with logos */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-5 bg-white rounded-2xl p-4 inline-flex">
-              <img
-                src={headerData.havaLogo}
-                alt="HAVA"
-                className="h-12 w-auto object-contain"
-                data-testid="footer-hava-logo"
-              />
-              <div className="h-10 w-px bg-steel-gray" />
-              <img
-                src={headerData.haryrockLogo}
-                alt="Haryrock Engineering"
-                className="h-10 w-auto object-contain"
-                data-testid="footer-haryrock-logo"
-              />
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <div className="bg-white rounded-2xl p-3 shadow-md inline-flex items-center justify-center" data-testid="footer-hava-logo-wrap">
+                <img
+                  src={headerData.havaLogo}
+                  alt="HAVA"
+                  className="h-12 w-auto object-contain"
+                  data-testid="footer-hava-logo"
+                />
+              </div>
+              <div className="bg-white rounded-2xl p-3 shadow-md inline-flex items-center justify-center" data-testid="footer-haryrock-logo-wrap">
+                <img
+                  src={headerData.haryrockLogo}
+                  alt="Haryrock Engineering"
+                  className="h-12 w-auto object-contain"
+                  data-testid="footer-haryrock-logo"
+                />
+              </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-5">
               {footerData.brandSummary}

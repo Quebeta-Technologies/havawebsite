@@ -16,7 +16,7 @@ export const StatsTabsSection = () => {
   const activeTabData = statsData.tabs.find(t => t.id === activeTab);
 
   return (
-    <section className="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-trust-blue via-trust-blue/95 to-trust-blue">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50 to-slate-100">
       {/* Decorative shapes */}
       <motion.div
         animate={{
@@ -28,7 +28,7 @@ export const StatsTabsSection = () => {
         style={{
           background: 'radial-gradient(circle, hsl(var(--accent-orange)) 0%, transparent 70%)',
           filter: 'blur(80px)',
-          opacity: 0.4
+          opacity: 0.25
         }}
       />
       <motion.div
@@ -39,9 +39,9 @@ export const StatsTabsSection = () => {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-10 left-10 w-96 h-96 rounded-full"
         style={{
-          background: 'radial-gradient(circle, hsl(var(--hava-red)) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, hsl(var(--trust-blue)) 0%, transparent 70%)',
           filter: 'blur(80px)',
-          opacity: 0.3
+          opacity: 0.2
         }}
       />
 
@@ -54,14 +54,14 @@ export const StatsTabsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 bg-trust-blue/10 border border-trust-blue/20 text-trust-blue px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
             <TrendingUp className="w-4 h-4" />
             By The Numbers
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-white mb-3">
+          <h2 className="text-3xl lg:text-4xl font-black text-charcoal mb-3">
             {statsData.heading}
           </h2>
-          <p className="text-base text-white/70 max-w-2xl mx-auto">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             {statsData.supportCopy}
           </p>
         </motion.div>
@@ -72,9 +72,9 @@ export const StatsTabsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8"
         >
-          <div className="inline-flex bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-2 gap-2">
+          <div className="inline-flex bg-white border border-steel-gray rounded-2xl p-1.5 gap-1 shadow-md">
             {statsData.tabs.map((tab) => {
               const Icon = tabIcons[tab.id];
               const isActive = activeTab === tab.id;
@@ -82,17 +82,17 @@ export const StatsTabsSection = () => {
                 <motion.button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative px-6 py-3 rounded-xl flex items-center gap-2 font-bold text-sm transition-colors ${
-                    isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`relative px-5 py-2.5 rounded-xl flex items-center gap-2 font-semibold text-sm transition-colors ${
+                    isActive ? 'text-white' : 'text-charcoal hover:text-trust-blue'
                   }`}
                   data-testid={`stats-tab-${tab.id}`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-hava-red to-accent-orange rounded-xl shadow-lg"
+                      className="absolute inset-0 bg-gradient-to-r from-trust-blue to-trust-blue/90 rounded-xl shadow-lg"
                       transition={{ type: "spring", duration: 0.5 }}
                     />
                   )}
@@ -112,33 +112,36 @@ export const StatsTabsSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-5"
           >
             {activeTabData.stats.map((stat, index) => (
               <motion.div
                 key={`${activeTab}-${index}`}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ y: -6 }}
                 className="relative group"
                 data-testid={`stat-card-${activeTab}-${index}`}
               >
-                <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 lg:p-8 shadow-2xl overflow-hidden h-full">
+                <div className="relative bg-white border border-steel-gray rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden h-full">
+                  {/* Subtle gradient accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-hava-red via-accent-orange to-trust-blue opacity-60" />
+
                   {/* Background gradient on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent-orange/20 to-hava-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-br from-hava-red/0 to-accent-orange/0 group-hover:from-hava-red/5 group-hover:to-accent-orange/5 transition-all duration-500" />
+
                   <div className="relative">
-                    {/* Big number */}
-                    <div className="text-5xl lg:text-6xl font-black text-accent-orange mb-2">
+                    {/* Number - reduced size, gradient text */}
+                    <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-br from-hava-red to-accent-orange bg-clip-text text-transparent mb-1.5 leading-none">
                       <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                     </div>
                     {/* Label */}
-                    <div className="text-sm lg:text-base text-white/90 font-medium uppercase tracking-wider">
+                    <div className="text-xs lg:text-sm text-charcoal font-semibold tracking-wide">
                       {stat.label}
                     </div>
                     {/* Decorative line */}
-                    <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-hava-red to-accent-orange rounded-full" />
+                    <div className="mt-3 h-0.5 w-8 bg-gradient-to-r from-hava-red to-accent-orange rounded-full group-hover:w-16 transition-all duration-500" />
                   </div>
                 </div>
               </motion.div>
