@@ -16,7 +16,7 @@ export const StatsTabsSection = () => {
   const activeTabData = statsData.tabs.find(t => t.id === activeTab);
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-trust-blue via-trust-blue/95 to-trust-blue">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-trust-blue via-trust-blue/95 to-trust-blue">
       {/* Decorative shapes */}
       <motion.div
         animate={{
@@ -52,16 +52,16 @@ export const StatsTabsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
             <TrendingUp className="w-4 h-4" />
             By The Numbers
           </div>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-black text-white mb-3">
             {statsData.heading}
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="text-base text-white/70 max-w-2xl mx-auto">
             {statsData.supportCopy}
           </p>
         </motion.div>

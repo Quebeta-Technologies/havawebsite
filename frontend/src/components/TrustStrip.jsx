@@ -7,7 +7,7 @@ const iconMap = { Award, Factory, Globe, Shield, Truck };
 
 export const TrustStrip = () => {
   return (
-    <section className="relative py-12 overflow-hidden bg-white">
+    <section className="relative py-8 overflow-hidden bg-white">
       {/* Animated gradient line on top */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-hava-red via-accent-orange to-trust-blue animate-gradient bg-[length:200%_auto]" />
       

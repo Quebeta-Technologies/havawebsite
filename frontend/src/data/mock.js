@@ -28,16 +28,44 @@ export const heroData = {
   secondaryCTA: "Explore Products"
 };
 
-// Factory tour video (free industrial video from Pexels)
+// Factory tour video (uploaded asset)
 export const videoData = {
-  videoUrl: "https://videos.pexels.com/video-files/2887463/2887463-uhd_2560_1440_24fps.mp4",
+  videoUrl: "/assets/factory-tour.mp4",
   posterUrl: "/products/about-manufacturing.jpg",
-  title: "Step Inside Our 25,000 Sq. Ft. Manufacturing Facility",
+  isoBadge: "/assets/iso-badge.png",
+  title: "Step Inside Our Manufacturing Facility",
   subtitle: "Where engineering excellence meets industrial precision",
   badges: [
     { label: "ISO 9001:2015", sublabel: "Certified Manufacturer" },
     { label: "25,000+", sublabel: "Sq. Ft. Facility" },
     { label: "15+", sublabel: "Countries Served" }
+  ]
+};
+
+// Hero image for split section
+export const heroImage = "/assets/hava-hero.png";
+
+// Countries served with flag emojis (Unicode flags work everywhere)
+export const countriesData = {
+  heading: "Trusted Across the Globe",
+  subheading: "Serving customers across 15+ countries with manufacturer-direct supply",
+  countries: [
+    { name: "India", code: "IN", flag: "🇮🇳" },
+    { name: "UAE", code: "AE", flag: "🇦🇪" },
+    { name: "Saudi Arabia", code: "SA", flag: "🇸🇦" },
+    { name: "South Africa", code: "ZA", flag: "🇿🇦" },
+    { name: "Nigeria", code: "NG", flag: "🇳🇬" },
+    { name: "Kenya", code: "KE", flag: "🇰🇪" },
+    { name: "Tanzania", code: "TZ", flag: "🇹🇿" },
+    { name: "Zambia", code: "ZM", flag: "🇿🇲" },
+    { name: "Indonesia", code: "ID", flag: "🇮🇩" },
+    { name: "Vietnam", code: "VN", flag: "🇻🇳" },
+    { name: "Sri Lanka", code: "LK", flag: "🇱🇰" },
+    { name: "Bangladesh", code: "BD", flag: "🇧🇩" },
+    { name: "Nepal", code: "NP", flag: "🇳🇵" },
+    { name: "Oman", code: "OM", flag: "🇴🇲" },
+    { name: "Qatar", code: "QA", flag: "🇶🇦" },
+    { name: "Egypt", code: "EG", flag: "🇪🇬" }
   ]
 };
 

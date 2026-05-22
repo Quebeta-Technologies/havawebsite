@@ -1,27 +1,27 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ChevronLeft, ChevronRight, Download, ArrowRight, Phone, Zap, Shield, Globe, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download, ArrowRight, Phone, Sparkles, Award } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
+import { CardContent } from '../components/ui/card';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { QuoteModal } from '../components/QuoteModal';
 import { AnimatedBackground } from '../components/AnimatedBackground';
 import { GlassCard } from '../components/GlassCard';
-import { FloatingElement } from '../components/FloatingElement';
 import { VideoSection } from '../components/VideoSection';
 import { TrustStrip } from '../components/TrustStrip';
 import { AboutSection } from '../components/AboutSection';
 import { WhyHavaSection } from '../components/WhyHavaSection';
 import { IndustriesSection } from '../components/IndustriesSection';
 import { StatsTabsSection } from '../components/StatsTabsSection';
+import { FeaturedProductsCarousel } from '../components/FeaturedProductsCarousel';
+import { CountriesSection } from '../components/CountriesSection';
 import { toast, Toaster } from 'sonner';
 import {
   heroData,
+  heroImage,
   productCategories,
-  featuredProducts,
-  manufacturingData,
   testimonials,
   quoteCTAData
 } from '../data/mock';
@@ -30,10 +30,6 @@ export const ModernHomePage = () => {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [brochureModalOpen, setBrochureModalOpen] = useState(false);
   const productScrollRef = useRef(null);
-
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   const scrollProducts = (direction) => {
     if (productScrollRef.current) {
@@ -45,17 +41,9 @@ export const ModernHomePage = () => {
     }
   };
 
-  const handleEnquireNow = () => {
-    setQuoteModalOpen(true);
-  };
-
-  const handleReadMore = () => {
-    toast.info('Product details page coming soon!');
-  };
-
-  const handleDownloadBrochure = () => {
-    setBrochureModalOpen(true);
-  };
+  const handleEnquireNow = () => setQuoteModalOpen(true);
+  const handleReadMore = () => toast.info('Product details page coming soon!');
+  const handleDownloadBrochure = () => setBrochureModalOpen(true);
 
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -64,160 +52,192 @@ export const ModernHomePage = () => {
       <Toaster position="top-right" richColors />
       <Header onQuoteClick={() => setQuoteModalOpen(true)} />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        <AnimatedBackground />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        
-        <motion.div 
-          ref={heroRef}
-          style={{ opacity, scale }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-        >
-          <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="inline-block mb-8"
-            >
-              <div className="glass-morphism px-6 py-3 rounded-full inline-flex items-center gap-2 border-2 border-white/40 shadow-2xl">
-                <Sparkles className="w-4 h-4 text-accent-orange" />
-                <span className="text-sm font-bold text-trust-blue">ISO 9001:2015 Certified Manufacturer</span>
-                <div className="w-2 h-2 bg-accent-orange rounded-full animate-pulse" />
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black text-charcoal mb-6 leading-tight"
-            >
-              <span className="block">Your Progressive</span>
-              <span className="gradient-text block animate-gradient bg-gradient-to-r from-hava-red via-accent-orange to-hava-red bg-[length:200%_auto]">
-                Mining & Rock Drilling
-              </span>
-              <span className="block">Partner</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl text-gray-700 mb-6 leading-relaxed max-w-4xl mx-auto"
-            >
-              {heroData.subheadline}
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-base text-gray-600 mb-12 max-w-3xl mx-auto"
-            >
-              {heroData.supportCopy}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={() => setQuoteModalOpen(true)}
-                  className="bg-gradient-to-r from-hava-red to-hava-red/90 hover:from-hava-red/90 hover:to-hava-red text-white font-bold px-10 py-7 text-lg shadow-2xl rounded-2xl animate-pulse-glow group relative overflow-hidden"
-                  data-testid="hero-get-quote-btn"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    {heroData.primaryCTA}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 shimmer" />
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth' })}
-                  className="glass-morphism border-2 border-trust-blue/50 text-trust-blue hover:bg-trust-blue hover:text-white font-bold px-10 py-7 text-lg rounded-2xl shadow-xl backdrop-blur-xl"
-                  data-testid="hero-explore-products-btn"
-                >
-                  {heroData.secondaryCTA}
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            <div className="mt-20 flex justify-center gap-8 flex-wrap">
-              {[
-                { icon: Shield, label: 'Premium Quality' },
-                { icon: Zap, label: 'Fast Delivery' },
-                { icon: Globe, label: '15+ Countries' }
-              ].map((item, index) => (
-                <FloatingElement key={index} delay={index * 0.2} duration={3 + index}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    className="glass-morphism p-4 rounded-2xl flex items-center gap-3 shadow-xl"
-                  >
-                    <item.icon className="w-6 h-6 text-hava-red" />
-                    <span className="font-semibold text-charcoal">{item.label}</span>
-                  </motion.div>
-                </FloatingElement>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-8 h-12 border-2 border-trust-blue/30 rounded-full flex items-start justify-center p-2"
-          >
-            <motion.div className="w-2 h-2 bg-hava-red rounded-full" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Factory Tour Video Section */}
+      {/* 1. VIDEO SECTION (first after header) */}
       <VideoSection />
 
-      {/* Trust Strip - Modern with effects */}
+      {/* 2. HERO SECTION - 50/50 split: Text Left, Image Right */}
+      <section ref={heroRef} className="relative py-8 lg:py-12 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <AnimatedBackground />
+        <div className="absolute inset-0 grid-pattern opacity-20" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* LEFT - Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="inline-block mb-6"
+              >
+                <div className="glass-morphism px-5 py-2.5 rounded-full inline-flex items-center gap-2 border-2 border-white/40 shadow-xl">
+                  <Sparkles className="w-4 h-4 text-accent-orange" />
+                  <span className="text-xs font-bold text-trust-blue">ISO 9001:2015 Certified Manufacturer</span>
+                  <div className="w-2 h-2 bg-accent-orange rounded-full animate-pulse" />
+                </div>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-charcoal mb-5 leading-[1.05]"
+              >
+                <span className="block">Your Progressive</span>
+                <span className="gradient-text block animate-gradient bg-gradient-to-r from-hava-red via-accent-orange to-hava-red bg-[length:200%_auto]">
+                  Mining & Rock Drilling
+                </span>
+                <span className="block">Partner</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-base lg:text-lg text-gray-700 mb-4 leading-relaxed"
+              >
+                {heroData.subheadline}
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-sm text-gray-600 mb-8"
+              >
+                {heroData.supportCopy}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-3"
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    onClick={() => setQuoteModalOpen(true)}
+                    className="bg-gradient-to-r from-hava-red to-hava-red/90 hover:from-hava-red/90 hover:to-hava-red text-white font-bold px-8 py-6 text-base shadow-2xl rounded-xl animate-pulse-glow group relative overflow-hidden w-full sm:w-auto"
+                    data-testid="hero-get-quote-btn"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {heroData.primaryCTA}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    <div className="absolute inset-0 shimmer" />
+                  </Button>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    onClick={() => document.getElementById('products').scrollIntoView({ behavior: 'smooth' })}
+                    className="glass-morphism border-2 border-trust-blue/50 text-trust-blue hover:bg-trust-blue hover:text-white font-bold px-8 py-6 text-base rounded-xl shadow-lg backdrop-blur-xl w-full sm:w-auto"
+                    data-testid="hero-explore-products-btn"
+                  >
+                    {heroData.secondaryCTA}
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* RIGHT - HAVA Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              animate={heroInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative">
+                {/* Decorative glow behind image */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.4, 0.6, 0.4]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-br from-hava-red/30 to-accent-orange/30 rounded-3xl blur-3xl"
+                />
+
+                {/* Main image */}
+                <motion.img
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.4 }}
+                  src={heroImage}
+                  alt="HAVA Mining and Rock Drilling Equipment"
+                  className="relative w-full h-auto rounded-3xl shadow-2xl"
+                  data-testid="hero-image"
+                />
+
+                {/* Floating ISO badge on image - top right */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  animate={heroInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.8, type: "spring" }}
+                  className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 w-24 h-24 lg:w-32 lg:h-32"
+                >
+                  <motion.img
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    src="/assets/iso-badge.png"
+                    alt="ISO 9001:2015 Certified"
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                    data-testid="hero-iso-badge"
+                  />
+                </motion.div>
+
+                {/* Floating tag - bottom left */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -bottom-4 -left-4 lg:-bottom-6 lg:-left-6 bg-white rounded-2xl px-4 py-3 shadow-2xl border-2 border-white"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-hava-red to-accent-orange rounded-xl flex items-center justify-center">
+                      <Award className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-black text-charcoal">25,000+</div>
+                      <div className="text-[10px] text-gray-500 uppercase tracking-wider">Sq. Ft. Facility</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Trust Strip */}
       <TrustStrip />
 
-      {/* About Us Section - NEW */}
+      {/* 4. About Us */}
       <AboutSection onCtaClick={() => setQuoteModalOpen(true)} />
 
-      {/* Product Categories */}
-      <section id="products" className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      {/* 5. Product Categories */}
+      <section id="products" className="py-10 lg:py-14 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <AnimatedBackground />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
-            <div className="inline-flex items-center gap-2 bg-hava-red/10 text-hava-red px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-hava-red/10 text-hava-red px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
               <div className="w-2 h-2 bg-hava-red rounded-full animate-pulse" />
               Product Range
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">
+            <h2 className="text-3xl lg:text-4xl font-black text-charcoal mb-2">
               Complete <span className="gradient-text">Product Range</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              HAVA offers a complete range of pneumatic rock drilling equipment, demolition tools, drilling accessories, and spare parts.
+            <p className="text-base text-gray-600 max-w-3xl mx-auto">
+              HAVA offers a complete range of pneumatic rock drilling equipment, demolition tools, accessories, and spare parts.
             </p>
           </motion.div>
 
@@ -231,7 +251,7 @@ export const ModernHomePage = () => {
             >
               <ChevronLeft className="w-6 h-6 text-trust-blue" />
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.1, x: 5 }}
               whileTap={{ scale: 0.9 }}
@@ -266,7 +286,6 @@ export const ModernHomePage = () => {
                         alt={product.name}
                         className="w-full h-full object-contain p-4"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="text-xl font-bold text-charcoal mb-3 group-hover:text-hava-red transition-colors">{product.name}</h3>
@@ -282,27 +301,21 @@ export const ModernHomePage = () => {
                           </Button>
                         </motion.div>
                         <div className="flex gap-2">
-                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
-                            <Button
-                              onClick={handleReadMore}
-                              variant="outline"
-                              className="w-full border-trust-blue text-trust-blue hover:bg-trust-blue hover:text-white"
-                              data-testid={`product-read-more-btn-${index}`}
-                            >
-                              Read More
-                            </Button>
-                          </motion.div>
-                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
-                            <Button
-                              onClick={handleDownloadBrochure}
-                              variant="outline"
-                              className="w-full border-steel-gray text-charcoal hover:bg-steel-gray"
-                              data-testid={`product-brochure-btn-${index}`}
-                            >
-                              <Download className="w-4 h-4 mr-2" />
-                              PDF
-                            </Button>
-                          </motion.div>
+                          <Button
+                            onClick={handleReadMore}
+                            variant="outline"
+                            className="flex-1 border-trust-blue text-trust-blue hover:bg-trust-blue hover:text-white"
+                          >
+                            Read More
+                          </Button>
+                          <Button
+                            onClick={handleDownloadBrochure}
+                            variant="outline"
+                            className="flex-1 border-steel-gray text-charcoal hover:bg-steel-gray"
+                          >
+                            <Download className="w-4 h-4 mr-2" />
+                            PDF
+                          </Button>
                         </div>
                       </div>
                     </CardContent>
@@ -314,112 +327,47 @@ export const ModernHomePage = () => {
         </div>
       </section>
 
-      {/* Why HAVA Section - Split with Image + Accordion */}
+      {/* 6. Why HAVA */}
       <WhyHavaSection />
 
-      {/* Industries Section - Modern Bento Grid */}
+      {/* 7. Industries */}
       <IndustriesSection />
 
-      {/* Stats Section - With Tabs */}
+      {/* 8. Stats with Tabs */}
       <StatsTabsSection />
 
-      {/* Featured Products */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 bg-trust-blue/10 text-trust-blue px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
-              <Sparkles className="w-4 h-4" />
-              Featured Products
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">
-              Our <span className="gradient-text">Featured Products</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Explore some of our key products developed to support real drilling, demolition, and mining applications.
-            </p>
-          </motion.div>
+      {/* 9. Featured Products Carousel */}
+      <FeaturedProductsCarousel onEnquireClick={handleEnquireNow} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-              >
-                <div className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group border border-steel-gray h-full">
-                  <div className="h-56 overflow-hidden bg-gradient-to-br from-slate-100 to-blue-50 relative">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-contain p-4"
-                    />
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-charcoal mb-3 group-hover:text-hava-red transition-colors">{product.name}</h3>
-                    <p className="text-sm text-gray-600 mb-4">{product.description}</p>
-                    <Button
-                      onClick={handleEnquireNow}
-                      className="w-full bg-gradient-to-r from-hava-red to-hava-red/90 hover:from-hava-red/90 hover:to-hava-red text-white font-semibold"
-                      data-testid={`featured-product-btn-${index}`}
-                    >
-                      Request Details
-                    </Button>
-                  </CardContent>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 10. Countries Served */}
+      <CountriesSection />
 
-      {/* Testimonials */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-white">
+      {/* 11. Testimonials */}
+      <section className="py-12 lg:py-16 relative overflow-hidden bg-white">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-hava-red/5 rounded-full blur-3xl" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
-            <div className="inline-flex items-center gap-2 bg-accent-orange/10 text-accent-orange px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-accent-orange/10 text-accent-orange px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
               <div className="w-2 h-2 bg-accent-orange rounded-full animate-pulse" />
               Testimonials
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">
+            <h2 className="text-3xl lg:text-4xl font-black text-charcoal mb-2">
               What Our <span className="gradient-text">Customers Say</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Trusted by users who value consistent performance, durability, and reliability.
-            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <GlassCard key={testimonial.id} delay={index * 0.2}>
                 <CardContent className="p-8">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
-                    className="text-6xl text-hava-red mb-4 leading-none font-serif"
-                  >
-                    &ldquo;
-                  </motion.div>
+                  <div className="text-6xl text-hava-red mb-4 leading-none font-serif">&ldquo;</div>
                   <p className="text-gray-700 leading-relaxed italic mb-6">{testimonial.text}</p>
                   <div className="pt-6 border-t border-steel-gray flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-hava-red to-accent-orange rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -438,11 +386,11 @@ export const ModernHomePage = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-32 relative overflow-hidden">
+      {/* 12. Final CTA */}
+      <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-hava-red via-hava-red/95 to-accent-orange" />
         <AnimatedBackground />
-        
+
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -450,32 +398,32 @@ export const ModernHomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
               {quoteCTAData.heading}
             </h2>
-            <p className="text-xl mb-12 text-white/90">{quoteCTAData.body}</p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <p className="text-lg mb-8 text-white/90">{quoteCTAData.body}</p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={() => setQuoteModalOpen(true)}
-                  className="bg-white text-hava-red hover:bg-slate-100 font-bold px-10 py-7 text-lg shadow-2xl rounded-2xl group"
+                  className="bg-white text-hava-red hover:bg-slate-100 font-bold px-8 py-6 text-base shadow-2xl rounded-xl group"
                   data-testid="final-cta-quote-btn"
                 >
                   <span className="flex items-center gap-2">
                     {quoteCTAData.primaryCTA}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Button>
               </motion.div>
-              
+
               <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={() => toast.info('Sales team contact coming soon!')}
-                  className="glass-dark border-2 border-white/50 text-white hover:bg-white hover:text-hava-red font-bold px-10 py-7 text-lg rounded-2xl shadow-2xl backdrop-blur-xl"
+                  className="glass-dark border-2 border-white/50 text-white hover:bg-white hover:text-hava-red font-bold px-8 py-6 text-base rounded-xl shadow-2xl backdrop-blur-xl"
                   data-testid="final-cta-sales-btn"
                 >
-                  <Phone className="mr-2 w-5 h-5" />
+                  <Phone className="mr-2 w-4 h-4" />
                   {quoteCTAData.secondaryCTA}
                 </Button>
               </motion.div>

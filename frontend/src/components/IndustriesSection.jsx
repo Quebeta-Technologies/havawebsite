@@ -15,7 +15,7 @@ export const IndustriesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-charcoal">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-charcoal">
       {/* Grid pattern overlay */}
       <div 
         className="absolute inset-0 opacity-[0.07]" 
@@ -60,16 +60,16 @@ export const IndustriesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-full mb-3 font-bold text-xs uppercase tracking-wider">
             <div className="w-2 h-2 bg-accent-orange rounded-full animate-pulse" />
             Industries We Serve
           </div>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
-            Engineered for <span className="bg-gradient-to-r from-accent-orange to-hava-red bg-clip-text text-transparent">Core Industrial</span><br />Applications
+          <h2 className="text-3xl lg:text-4xl font-black text-white mb-3">
+            Engineered for <span className="bg-gradient-to-r from-accent-orange to-hava-red bg-clip-text text-transparent">Core Industrial</span> Applications
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">{industriesData.intro}</p>
+          <p className="text-base text-white/70 max-w-2xl mx-auto">{industriesData.intro}</p>
         </motion.div>
 
         {/* Bento grid layout */}

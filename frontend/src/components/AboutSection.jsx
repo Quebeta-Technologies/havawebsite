@@ -6,7 +6,7 @@ import { aboutData } from '../data/mock';
 
 export const AboutSection = ({ onCtaClick }) => {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-white">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-white">
       {/* Decorative shapes */}
       <div className="absolute top-20 right-0 w-72 h-72 bg-hava-red/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-trust-blue/5 rounded-full blur-3xl" />

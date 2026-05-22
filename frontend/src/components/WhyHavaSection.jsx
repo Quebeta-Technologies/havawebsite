@@ -11,7 +11,7 @@ import { whyHavaData } from '../data/mock';
 
 export const WhyHavaSection = () => {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-hava-red/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-trust-blue/5 rounded-full blur-3xl" />
@@ -23,16 +23,16 @@ export const WhyHavaSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <div className="inline-flex items-center gap-2 bg-trust-blue/10 text-trust-blue px-4 py-2 rounded-full mb-4 font-bold text-sm uppercase tracking-wider">
             <Award className="w-4 h-4" />
             Why Choose Us
           </div>
-          <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">
+          <h2 className="text-3xl lg:text-4xl font-black text-charcoal mb-3">
             Why Buyers Choose <span className="gradient-text">HAVA</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{whyHavaData.intro}</p>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">{whyHavaData.intro}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
