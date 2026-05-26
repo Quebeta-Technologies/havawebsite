@@ -30,7 +30,7 @@ export const AboutSection = ({ onCtaClick }) => {
                 <img
                   src={aboutData.image}
                   alt="About HAVA Manufacturing"
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[500px] object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-trust-blue/40 to-transparent" />
               </div>
