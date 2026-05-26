@@ -49,7 +49,7 @@ export const WhyHavaSection = () => {
               <img
                 src={whyHavaData.image}
                 alt="HAVA Manufacturing Excellence"
-                className="w-full h-[550px] object-cover"
+                className="w-full h-[550px] object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-trust-blue/60 via-transparent to-transparent" />
             </div>
